@@ -1,4 +1,5 @@
 import {
+  date,
   foreignKey,
   pgTable,
   timestamp,
@@ -92,3 +93,9 @@ export const verificationTokens = pgTable(
     };
   }
 );
+
+export const examples = pgTable("examples", {
+  id: uuid("id").defaultRandom().primaryKey().notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: date("updatedAt"),
+});

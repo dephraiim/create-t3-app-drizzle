@@ -5,6 +5,7 @@ import {
   publicProcedure,
   protectedProcedure,
 } from "@/server/api/trpc";
+import { examples } from "drizzle/schema";
 
 export const exampleRouter = createTRPCRouter({
   hello: publicProcedure
@@ -15,8 +16,8 @@ export const exampleRouter = createTRPCRouter({
       };
     }),
 
-  getAll: publicProcedure.query(({ ctx }) => {
-    return ctx.prisma.example.findMany();
+  getAll: publicProcedure.query(async ({ ctx }) => {
+    return await ctx.drizzle.select().from(examples);
   }),
 
   getSecretMessage: protectedProcedure.query(() => {

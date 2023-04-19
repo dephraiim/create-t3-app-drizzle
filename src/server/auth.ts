@@ -7,7 +7,7 @@ import {
 import { env } from "@/env.mjs";
 import GithubProvider from "next-auth/providers/github";
 import DrizzleAdapter from "drizzle/adapter";
-import { db } from "drizzle/client";
+import { db as drizzle } from "@/server/db";
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -46,7 +46,7 @@ export const authOptions: NextAuthOptions = {
     }),
   },
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  adapter: DrizzleAdapter(db) as any,
+  adapter: DrizzleAdapter(drizzle) as any,
   providers: [
     GithubProvider({
       clientId: env.GITHUB_CLIENT_ID,

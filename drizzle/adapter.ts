@@ -58,11 +58,20 @@ export default function DrizzleAdapter(db: NodePgDatabase) {
     },
 
     async linkAccount(data: TAccount) {
-      const insertedAccounts = await db
-        .insert(accounts)
-        .values(data)
-        .returning();
-      return insertedAccounts[0];
+      const updatedAccount = await db.insert(accounts).values(data).returning();
+
+      const account = {
+        ...updatedAccount[0],
+        access_token: updatedAccount[0]?.access_token ?? undefined,
+        token_type: updatedAccount[0]?.token_type ?? undefined,
+        id_token: updatedAccount[0]?.id_token ?? undefined,
+        refresh_token: updatedAccount[0]?.refresh_token ?? undefined,
+        scope: updatedAccount[0]?.scope ?? undefined,
+        expires_at: updatedAccount[0]?.expires_at ?? undefined,
+        session_state: updatedAccount[0]?.session_state ?? undefined,
+      };
+
+      return account;
     },
 
     async unlinkAccount(provider_providerAccountId: string) {

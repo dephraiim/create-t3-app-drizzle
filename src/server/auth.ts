@@ -4,10 +4,10 @@ import {
   type NextAuthOptions,
   type DefaultSession,
 } from "next-auth";
-import DiscordProvider from "next-auth/providers/discord";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { env } from "@/env.mjs";
-import { prisma } from "@/server/db";
+import GithubProvider from "next-auth/providers/github";
+import DrizzleAdapter from "drizzle/adapter";
+import { db } from "drizzle/client";
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -45,11 +45,12 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   },
-  adapter: PrismaAdapter(prisma),
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  adapter: DrizzleAdapter(db) as any,
   providers: [
-    DiscordProvider({
-      clientId: env.DISCORD_CLIENT_ID,
-      clientSecret: env.DISCORD_CLIENT_SECRET,
+    GithubProvider({
+      clientId: env.GITHUB_CLIENT_ID,
+      clientSecret: env.GITHUB_CLIENT_SECRET,
     }),
     /**
      * ...add more providers here.

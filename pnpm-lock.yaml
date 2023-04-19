@@ -24,7 +24,7 @@ dependencies:
     version: 10.18.0
   drizzle-orm:
     specifier: ^0.24.3
-    version: 0.24.3(@types/pg@8.6.6)(pg@8.10.0)
+    version: 0.24.3(@types/pg@8.6.6)(pg@8.10.0)(postgres@3.3.4)
   next:
     specifier: ^13.2.4
     version: 13.2.4(react-dom@18.2.0)(react@18.2.0)
@@ -34,6 +34,9 @@ dependencies:
   pg:
     specifier: ^8.10.0
     version: 8.10.0
+  postgres:
+    specifier: ^3.3.4
+    version: 3.3.4
   react:
     specifier: 18.2.0
     version: 18.2.0
@@ -1137,7 +1140,7 @@ packages:
       - supports-color
     dev: true
 
-  /drizzle-orm@0.24.3(@types/pg@8.6.6)(pg@8.10.0):
+  /drizzle-orm@0.24.3(@types/pg@8.6.6)(pg@8.10.0)(postgres@3.3.4):
     resolution: {integrity: sha512-/C5aOp2uTDonxK7c1OWgJ+E/icwAjDsQg0ufclh51d8/mETx7hSHi1vNPH6e5+uu/0OFeOadj9+3oWPa8uvb5w==}
     peerDependencies:
       '@aws-sdk/client-rds-data': '>=3'
@@ -1195,6 +1198,7 @@ packages:
     dependencies:
       '@types/pg': 8.6.6
       pg: 8.10.0
+      postgres: 3.3.4
     dev: false
 
   /electron-to-chromium@1.4.368:
@@ -2982,6 +2986,10 @@ packages:
     engines: {node: '>=0.10.0'}
     dependencies:
       xtend: 4.0.2
+
+  /postgres@3.3.4:
+    resolution: {integrity: sha512-XVu0+d/Y56pl2lSaf0c7V19AhAEfpVrhID1IENWN8nf0xch6hFq6dAov5dtUX6ZD46wfr1TxvLhxLtV8WnNsOg==}
+    dev: false
 
   /preact-render-to-string@5.2.6(preact@10.13.2):
     resolution: {integrity: sha512-JyhErpYOvBV1hEPwIxc/fHWXPfnEGdRKxc8gFdAZ7XV4tlzyzG847XAyEZqoDnynP88akM4eaHcSOzNcLWFguw==}
